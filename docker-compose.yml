@@ -1,0 +1,102 @@
+name: pm25-tracker
+
+x-server-env: &server-env
+  APP_NAME: ${APP_NAME}
+  APP_ENV: ${APP_ENV}
+  PORT: ${SERVER_PORT}
+  PG_HOST: ${PG_HOST}
+  PG_PORT: ${PG_PORT}
+  PG_USER: ${PG_USER}
+  PG_PASSWORD: ${PG_PASSWORD}
+  PG_DATABASE: ${PG_DATABASE}
+  PG_SCHEMA: ${PG_SCHEMA}
+  PG_SSL_MODE: ${PG_SSL_MODE}
+  CORS_ORIGINS: ${CORS_ORIGINS}
+  AIR4THAI_URL: ${AIR4THAI_URL}
+  LOCAL_STATION_RADIUS_KM: ${LOCAL_STATION_RADIUS_KM}
+  ETL_SCHEDULE: ${ETL_SCHEDULE}
+  ETL_RUN_ON_START: ${ETL_RUN_ON_START}
+  HTTP_TIMEOUT_SECONDS: ${HTTP_TIMEOUT_SECONDS}
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: pm25-tracker-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DATABASE}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    ports:
+      - "${PG_PORT}:5432"
+    networks:
+      - pm25-tracker-network
+
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    image: pm25-tracker-server:${APP_ENV:-dev}
+    container_name: pm25-tracker-server
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment: *server-env
+    volumes:
+      - ./server:/app
+    ports:
+      - "${SERVER_PORT}:3001"
+    networks:
+      - pm25-tracker-network
+
+  etl:
+    image: pm25-tracker-server:${APP_ENV:-dev}
+    container_name: pm25-tracker-etl
+    profiles: ["etl"]
+    entrypoint: ["go", "run", "./cmd/etl"]
+    restart: unless-stopped
+    environment: *server-env
+    volumes:
+      - ./server:/app
+    depends_on:
+      db:
+        condition: service_healthy
+      server:
+        condition: service_started
+    networks:
+      - pm25-tracker-network
+
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    image: pm25-tracker-client:${APP_ENV:-dev}
+    container_name: pm25-tracker-client
+    restart: unless-stopped
+    depends_on:
+      server:
+        condition: service_started
+    environment:
+      VITE_API_URL: ${VITE_API_URL}
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    ports:
+      - "${CLIENT_PORT}:3000"
+    networks:
+      - pm25-tracker-network
+
+networks:
+  pm25-tracker-network:
+    driver: bridge
+
+volumes:
+  pgdata:
