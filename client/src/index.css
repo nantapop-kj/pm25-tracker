@@ -1,111 +1,213 @@
+:root,
+[data-phase='afternoon'] {
+  --glass: rgba(18, 36, 64, 0.48);
+  --glass-solid: #2c4a70;
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --pill: rgba(255, 255, 255, 0.16);
+  --pill-active-text: #1b2f4a;
+  --line: rgba(255, 255, 255, 0.16);
+  --track: rgba(255, 255, 255, 0.22);
+  --field: rgba(255, 255, 255, 0.14);
+  --popup: #22395a;
+  --muted: rgba(255, 255, 255, 0.88);
+  --base: #2f5f96;
+}
+
+[data-phase='morning'] {
+  --glass: rgba(24, 44, 72, 0.58);
+  --glass-solid: #34557c;
+  --glass-border: rgba(255, 255, 255, 0.24);
+  --pill: rgba(255, 255, 255, 0.16);
+  --pill-active-text: #23395a;
+  --line: rgba(255, 255, 255, 0.16);
+  --track: rgba(255, 255, 255, 0.22);
+  --field: rgba(255, 255, 255, 0.14);
+  --popup: #2b4466;
+  --muted: rgba(255, 255, 255, 0.88);
+  --base: #4a78ad;
+}
+
+[data-phase='evening'] {
+  --glass: rgba(34, 22, 52, 0.46);
+  --glass-solid: #3a2c55;
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --pill: rgba(255, 255, 255, 0.14);
+  --pill-active-text: #2a1f45;
+  --line: rgba(255, 255, 255, 0.14);
+  --track: rgba(255, 255, 255, 0.2);
+  --field: rgba(255, 255, 255, 0.1);
+  --popup: #33274d;
+  --muted: rgba(255, 255, 255, 0.85);
+  --base: #2a2f5e;
+}
+
+[data-phase='night'] {
+  --glass: rgba(255, 255, 255, 0.07);
+  --glass-solid: #1a2238;
+  --glass-border: rgba(255, 255, 255, 0.11);
+  --pill: rgba(255, 255, 255, 0.10);
+  --pill-active-text: #0d1428;
+  --line: rgba(255, 255, 255, 0.10);
+  --track: rgba(255, 255, 255, 0.14);
+  --field: rgba(255, 255, 255, 0.07);
+  --popup: #19223a;
+  --muted: rgba(255, 255, 255, 0.8);
+  --base: #070d1d;
+}
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --text: #ffffff;
+  --font: 'Geist Variable', 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --blur: blur(24px) saturate(150%);
+  --radius: 22px;
+  --pad: 24px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
   color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  background: var(--base);
+  font-variant-numeric: tabular-nums;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  color: var(--text);
 }
 
 h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
+h2,
+p,
+dl,
+dd,
+ol,
+ul {
   margin: 0;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+a {
+  color: var(--text);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 
 code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.9em;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--field);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+
+/* ---------- glass ---------- */
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  -webkit-backdrop-filter: var(--blur);
+  backdrop-filter: var(--blur);
+}
+.glass--pill {
+  border-radius: 999px;
+}
+
+/* No blur support, or the device asks for less transparency: use solid panels */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass {
+    background: var(--glass-solid);
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: var(--glass-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-size: 14px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--glass-border);
+  background: var(--pill);
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+.btn--primary {
+  border-color: transparent;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--pill-active-text);
+  font-weight: 500;
+}
+.btn--primary:hover {
+  background: #ffffff;
+}
+
+/* ---------- states ---------- */
+
+.state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 64px var(--pad);
+  color: var(--muted);
+  text-align: center;
+}
+.state--error {
+  color: #ffd2c8;
+}
+
+@media (max-width: 520px) {
+  :root {
+    --pad: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

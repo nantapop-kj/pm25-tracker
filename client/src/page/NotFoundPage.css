@@ -1,0 +1,39 @@
+.not-found {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px var(--pad);
+}
+
+.not-found-card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 28px 28px;
+  text-align: center;
+}
+
+.not-found-code {
+  font-size: clamp(88px, 22vw, 128px);
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.2);
+}
+
+.not-found-title {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.not-found-text {
+  max-width: 32ch;
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}

@@ -40,7 +40,7 @@ func dsn(c config.PostgresConfig) string {
 		Path:   c.Database,
 	}
 	q := u.Query()
-	q.Set("sslmode", c.SSLMode)
+	q.Set("sslmode", c.SslMode)
 	if c.Schema != "" {
 		q.Set("search_path", c.Schema)
 	}

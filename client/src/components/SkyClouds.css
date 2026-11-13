@@ -1,0 +1,7 @@
+.sky-clouds {
+  position: absolute;
+  inset: -2%;
+  width: 104%;
+  height: 104%;
+  filter: blur(6px);
+}

@@ -10,17 +10,17 @@ type Config struct {
 	AppName     string
 	AppEnv      string
 	ServerPort  string
-	CORSOrigins []string
+	CorsOrigins []string
 
-	Air4ThaiURL          string
+	Air4ThaiUrl          string
 	LocalStationRadiusKm float64
-	HTTPTimeout          time.Duration
+	HttpTimeout          time.Duration
 
-	ETL      ETLConfig
+	Etl      EtlConfig
 	Postgres PostgresConfig
 }
 
-type ETLConfig struct {
+type EtlConfig struct {
 	Schedule   string
 	RunOnStart bool
 }
@@ -32,7 +32,7 @@ type PostgresConfig struct {
 	Password string
 	Database string
 	Schema   string
-	SSLMode  string
+	SslMode  string
 }
 
 func Load() (*Config, error) {
@@ -42,13 +42,13 @@ func Load() (*Config, error) {
 		AppName:     GetEnv("APP_NAME", "pm25-tracker"),
 		AppEnv:      GetEnv("APP_ENV", ""),
 		ServerPort:  GetEnv("SERVER_PORT", "3001"),
-		CORSOrigins: GetEnvList("CORS_ORIGINS"),
+		CorsOrigins: GetEnvList("CORS_ORIGINS"),
 
-		Air4ThaiURL:          GetEnv("AIR4THAI_URL", ""),
+		Air4ThaiUrl:          GetEnv("AIR4THAI_URL", ""),
 		LocalStationRadiusKm: GetEnvFloat("LOCAL_STATION_RADIUS_KM", 50),
-		HTTPTimeout:          time.Duration(GetEnvInt("HTTP_TIMEOUT_SECONDS", 30)) * time.Second,
+		HttpTimeout:          time.Duration(GetEnvInt("HTTP_TIMEOUT_SECONDS", 30)) * time.Second,
 
-		ETL: ETLConfig{
+		Etl: EtlConfig{
 			Schedule:   GetEnv("ETL_SCHEDULE", "15 * * * *"),
 			RunOnStart: GetEnvBool("ETL_RUN_ON_START", true),
 		},
@@ -60,7 +60,7 @@ func Load() (*Config, error) {
 			Password: GetEnv("PG_PASSWORD", ""),
 			Database: GetEnv("PG_DATABASE", ""),
 			Schema:   GetEnv("PG_SCHEMA", "public"),
-			SSLMode:  GetEnv("PG_SSL_MODE", "disable"),
+			SslMode:  GetEnv("PG_SSL_MODE", "disable"),
 		},
 	}, nil
 }
