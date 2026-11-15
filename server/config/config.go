@@ -4,11 +4,12 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
+	"github.com/nantapop-kj/pm25-tracker/server/internal/enums"
 )
 
 type Config struct {
 	AppName     string
-	AppEnv      string
+	AppEnv      enums.AppEnv
 	ServerPort  string
 	CorsOrigins []string
 
@@ -32,15 +33,17 @@ type PostgresConfig struct {
 	Password string
 	Database string
 	Schema   string
-	SslMode  string
+	SSLMode  string
 }
 
-func Load() (*Config, error) {
+func Load() *Config {
 	_ = godotenv.Load()
+
+	appEnv := enums.AppEnv(GetEnv("APP_ENV", string(enums.EnvDev)))
 
 	return &Config{
 		AppName:     GetEnv("APP_NAME", "pm25-tracker"),
-		AppEnv:      GetEnv("APP_ENV", ""),
+		AppEnv:      appEnv,
 		ServerPort:  GetEnv("SERVER_PORT", "3001"),
 		CorsOrigins: GetEnvList("CORS_ORIGINS"),
 
@@ -60,7 +63,7 @@ func Load() (*Config, error) {
 			Password: GetEnv("PG_PASSWORD", ""),
 			Database: GetEnv("PG_DATABASE", ""),
 			Schema:   GetEnv("PG_SCHEMA", "public"),
-			SslMode:  GetEnv("PG_SSL_MODE", "disable"),
+			SSLMode:  GetEnv("PG_SSL_MODE", "disable"),
 		},
-	}, nil
+	}
 }

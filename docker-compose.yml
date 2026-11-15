@@ -3,8 +3,8 @@ name: pm25-tracker
 x-server-env: &server-env
   APP_NAME: ${APP_NAME}
   APP_ENV: ${APP_ENV}
-  PORT: ${SERVER_PORT}
-  PG_HOST: ${PG_HOST}
+  SERVER_PORT: ${SERVER_PORT}
+  PG_HOST: db
   PG_PORT: ${PG_PORT}
   PG_USER: ${PG_USER}
   PG_PASSWORD: ${PG_PASSWORD}
