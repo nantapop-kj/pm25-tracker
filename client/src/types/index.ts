@@ -42,6 +42,7 @@ export type { Coords, LocationProviderProps, LocationState } from './location'
 export type { Average, PollutantInfo, PollutantKey } from './pollutant'
 export type { Star } from './skyBackground'
 export type { Rgb, SkyCloudsProps } from './skyClouds'
+export type { Mote, SkyDustProps } from './skyDust'
 export type {
   CelestialBody,
   CelestialPosition,

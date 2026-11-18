@@ -51,3 +51,18 @@ export const provinceOf = (area: string): string => {
 
   return parts.length > 0 ? parts[parts.length - 1] : ''
 }
+
+export const timeAgo = (iso: string | null | undefined, now: number = Date.now()): string => {
+  if (!iso) return '–'
+
+  const minutes = Math.round((now - new Date(iso).getTime()) / 60000)
+  if (minutes < 1) return 'just now'
+  if (minutes < 60) return `${minutes} min ago`
+
+  const hours = Math.round(minutes / 60)
+  if (hours < 24) return hours === 1 ? '1 hour ago' : `${hours} hours ago`
+
+  const days = Math.round(hours / 24)
+
+  return days === 1 ? '1 day ago' : `${days} days ago`
+}

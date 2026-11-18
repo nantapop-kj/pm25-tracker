@@ -11,6 +11,14 @@ export const useStations = (): UseQueryResult<Station[]> =>
     refetchInterval: RefreshMs,
   })
 
+export const useStation = (id: string | undefined): UseQueryResult<Station> =>
+  useQuery({
+    queryKey: ['station', id],
+    queryFn: ({ signal }): Promise<Station> => stationService.getByID(id!, signal),
+    enabled: Boolean(id),
+    refetchInterval: RefreshMs,
+  })
+
 export const useStationReadings = (id: string | undefined, hours: number): UseQueryResult<Reading[]> =>
   useQuery({
     queryKey: ['station', id, 'readings', hours],

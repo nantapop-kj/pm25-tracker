@@ -3,6 +3,7 @@ import { hazeLevel, useSky } from '@/contexts/SkyContext'
 import { Phase, Phases } from '@/enums'
 import type { Star } from '@/types'
 import { SkyClouds } from './SkyClouds'
+import { SkyDust } from './SkyDust'
 import './SkyBackground.css'
 
 const seeded = (seed: number): (() => number) => {
@@ -62,6 +63,7 @@ export const SkyBackground = (): JSX.Element => {
         <SkyClouds phase={phase} haze={haze} />
       </div>
       <div className="sky-dust" />
+      <SkyDust haze={haze} />
     </div>
   )
 }
