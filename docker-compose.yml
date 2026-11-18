@@ -85,8 +85,8 @@ services:
       server:
         condition: service_started
     environment:
-      # Vite proxies /api from inside the container, so it must reach the "server" service by name.
       VITE_API_URL: http://server:3001
+      VITE_CARTO_API_KEY: ${VITE_CARTO_API_KEY}
     volumes:
       - ./client:/app
       - /app/node_modules

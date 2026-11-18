@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css'
 import { useSky } from '@/contexts/SkyContext'
 import { Phase } from '@/enums'
 import { levelInfo } from '@/lib/aqi'
+import { cartoTileUrl } from '@/lib/carto'
 import { formatDateTime, formatNumber, provinceOf } from '@/lib/format'
 import { Paths } from '@/routes/paths'
 import type { LevelInfo, Station, StationMapProps } from '@/types'
@@ -20,8 +21,8 @@ const ThailandBounds: LatLngBoundsExpression = [
 ]
 
 const Tiles: Record<MapTheme, string> = {
-  light: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-  dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  light: cartoTileUrl('light_all'),
+  dark: cartoTileUrl('dark_all'),
 }
 
 const Attribution: string =

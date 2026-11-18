@@ -78,6 +78,7 @@ cp .env.example .env
 | `HTTP_TIMEOUT_SECONDS` | Timeout for calls to Air4Thai (default `30`) |
 | `CLIENT_PORT` | Web port (default `3000`) |
 | `VITE_API_URL` | API address that the web app forwards `/api` requests to. Inside Docker, `docker-compose.yml` sets it to `http://server:3001`. |
+| `VITE_CARTO_API_KEY` | Key for the CARTO map tiles. Get a free one at [carto.com/basemaps/apikey](https://www.carto.com/basemaps/apikey/). Without it, the map may not load or may show a watermark. It is sent from the browser, so anyone can see it. |
 | `SERVER_PORT` | API port (default `3001`) |
 | `CORS_ORIGINS` | Allowed origins, separated by `,` |
 
@@ -127,6 +128,7 @@ docker exec -it pm25-tracker-client npm start
   ```bash
   docker compose up -d --build --renew-anon-volumes --no-deps client
   ```
+- The web app reads `VITE_*` variables only when it starts. After changing them in `.env`, recreate the client with `docker compose up -d client` and run `npm start` again.
 - `PG_USER`, `PG_PASSWORD`, and `PG_DATABASE` are only used to set up the database the first time its volume is created. If you change them in `.env` later, change them in PostgreSQL too, or remove the volume with `docker compose down -v`.
 - Check the code:
   ```bash
