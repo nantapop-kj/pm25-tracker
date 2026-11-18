@@ -1,0 +1,110 @@
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -48px;
+  z-index: 2000;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #1b2f4a;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px var(--pad) 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.main {
+  flex: 1;
+}
+
+.topbar {
+  position: sticky;
+  top: 12px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 6px 6px 20px;
+  border-radius: 999px;
+}
+
+.brand {
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav {
+  display: flex;
+  gap: 2px;
+  font-size: 14px;
+}
+
+.nav a {
+  padding: 11px 14px;
+  border-radius: 999px;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--text);
+}
+
+.nav a.active {
+  color: var(--text);
+  background: var(--pill);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+}
+
+.footer p {
+  max-width: 640px;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  text-align: center;
+}
+
+
+@media (max-width: 520px) {
+  .shell {
+    padding-top: 12px;
+    gap: 12px;
+  }
+
+  .topbar {
+    top: 8px;
+    padding-left: 16px;
+  }
+
+  .nav a {
+    padding: 11px 10px;
+  }
+}
