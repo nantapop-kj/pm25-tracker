@@ -1,0 +1,64 @@
+.rows--ranked {
+  margin: 0;
+}
+
+.row.row--rank {
+  grid-template-columns: 20px 12px minmax(0, 1fr) auto;
+  margin: 0;
+  padding: 8px 0;
+  border-radius: 0;
+}
+
+.row.row--rank:hover {
+  background: none;
+}
+
+.row-rank {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+}
+
+.row.row--rank.is-highlight {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  margin: 0 -8px;
+  padding: 8px;
+}
+
+.row-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  vertical-align: 2px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--pill-active-text);
+}
+
+a.row.row--rank:hover .row-name {
+  text-decoration: underline;
+}
+
+.section-note {
+  padding: 0 4px;
+  font-size: 12px;
+  color: var(--muted);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.section-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 0 4px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 820px) {
+  .row.row--rank {
+    grid-template-columns: 20px 12px minmax(0, 1fr) auto;
+  }
+}

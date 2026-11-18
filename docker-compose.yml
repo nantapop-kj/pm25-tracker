@@ -3,9 +3,9 @@ name: pm25-tracker
 x-server-env: &server-env
   APP_NAME: ${APP_NAME}
   APP_ENV: ${APP_ENV}
-  SERVER_PORT: ${SERVER_PORT}
+  PORT: ${SERVER_PORT}
   PG_HOST: db
-  PG_PORT: ${PG_PORT}
+  PG_PORT: "5432"
   PG_USER: ${PG_USER}
   PG_PASSWORD: ${PG_PASSWORD}
   PG_DATABASE: ${PG_DATABASE}
@@ -85,7 +85,8 @@ services:
       server:
         condition: service_started
     environment:
-      VITE_API_URL: ${VITE_API_URL}
+      # Vite proxies /api from inside the container, so it must reach the "server" service by name.
+      VITE_API_URL: http://server:3001
     volumes:
       - ./client:/app
       - /app/node_modules
