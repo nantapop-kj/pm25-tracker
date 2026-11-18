@@ -1,0 +1,47 @@
+.place-switch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  margin-bottom: 14px;
+  text-shadow: none;
+}
+
+.place-switch button,
+.place-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 13px;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.place-switch button.is-active {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--pill-active-text);
+  font-weight: 500;
+}
+
+.place-btn {
+  height: 40px;
+  margin-bottom: 14px;
+  border: 1px solid var(--glass-border);
+  text-shadow: none;
+}
+
+.place-btn:disabled {
+  cursor: progress;
+  opacity: 0.85;
+}
+
+.place-note {
+  margin-bottom: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
