@@ -176,8 +176,15 @@ ETL console:
   "status": "ok",
   "code": 200,
   "data": [
-    { "day": "2026-11-09", "avgPm25": 25, "minPm25": 20.1, "maxPm25": 30.3,
-      "samples": 24, "rolling7d": 37.2, "level": "moderate" }
+    {
+      "day": "2026-11-09",
+      "avgPm25": 25,
+      "minPm25": 20.1,
+      "maxPm25": 30.3,
+      "samples": 24,
+      "rolling7d": 37.2,
+      "level": "moderate"
+    }
   ]
 }
 ```
